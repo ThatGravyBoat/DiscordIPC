@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/**
+ * Changes from ThatGravyBoat: https://github.com/ThatGravyboat/DiscordIPC/commit/f689cd53003fbfd3a306e10e30645df72cb7ed81
+ */
 package com.jagrosh.discordipc.entities;
 
 import com.google.gson.JsonArray;
