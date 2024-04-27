@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.jagrosh</groupId>
     <artifactId>DiscordIPC</artifactId>
-    <version>0.5</version>
+    <version>0.5.2</version>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -55,6 +55,14 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>teamresourceful</id>
+            <name>Team Resourceful Repository</name>
+            <url>https://maven.teamresourceful.com/repository/thatgravyboat/</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

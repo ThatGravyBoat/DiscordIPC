@@ -144,6 +144,7 @@ public class RichPresence {
 
         if (buttons.length > 0 && buttons.length < 3){
             for (RichPresenceButton button : buttons) {
+                if (button == null) continue;
                 JsonObject jsonButton = new JsonObject();
                 jsonButton.addProperty("label", button.getLabel());
                 jsonButton.addProperty("url", button.getUrl());
@@ -192,7 +193,7 @@ public class RichPresence {
         private String matchSecret;
         private String joinSecret;
         private String spectateSecret;
-        private RichPresenceButton[] buttons;
+        private RichPresenceButton[] buttons = new RichPresenceButton[2];
         private boolean instance;
 
         /**
@@ -365,6 +366,15 @@ public class RichPresence {
 
         public Builder setButtons(RichPresenceButton[] buttons){
             this.buttons = buttons;
+            return this;
+        }
+
+        public Builder addButton(RichPresenceButton button){
+            if (buttons[0] == null){
+                buttons[0] = button;
+            } else if (buttons[1] == null){
+                buttons[1] = button;
+            }
             return this;
         }
 
