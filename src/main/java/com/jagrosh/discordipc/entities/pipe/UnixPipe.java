@@ -37,7 +37,7 @@ public class UnixPipe extends Pipe {
         super(ipcClient, callbacks);
 
         socket = AFUNIXSocket.newInstance();
-        socket.connect(new AFUNIXSocketAddress(new File(location)));
+        socket.connect(AFUNIXSocketAddress.of(new File(location)));
     }
 
     @Override
