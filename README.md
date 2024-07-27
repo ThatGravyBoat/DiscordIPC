@@ -1,54 +1,30 @@
-[version]: https://api.bintray.com/packages/jagrosh/maven/DiscordIPC/images/download.svg
-[download]: https://bintray.com/jagrosh/maven/DiscordIPC/_latestVersion
-[license]: https://img.shields.io/badge/License-Apache%202.0-lightgrey.svg
+### Discord IPC
 
-[ ![version][] ][download]
-[ ![license][] ](https://github.com/jagrosh/DiscordIPC/tree/master/LICENSE)
+This is a continuation of the original DiscordIPC project by jagrosh. 
 
-# DiscordIPC
+This adds additional fixes and features such as:
 
-Connect locally to the Discord client using IPC for a subset of RPC features like Rich Presence and Activity Join/Spectate
+- Added ability to add buttons to RPC
+- Updated junixsocket version
+- Fixed crash for unix pipe
+- Added ability to change activity type
 
+## Getting Started
 
-# Features
+First you'll need to add the repository to your build.gradle file:
 
-- Setting Rich Presence
-- Listen for Join, Spectate, and Join-Request events
-- Detect and specify priority for client build (Stable, PTB, Canary)
-- 100% Java
-
-
-# Getting Started
-
-First you'll need to add this project as a dependency. If you're using maven:
-```xml
-  <dependency>
-    <groupId>com.jagrosh</groupId>
-    <artifactId>DiscordIPC</artifactId>
-    <version>LATEST</version>
-  </dependency>
-```
-```xml
-  <repository>
-    <id>central</id>
-    <name>bintray</name>
-    <url>http://jcenter.bintray.com</url>
-  </repository>
-```
-With gradle:
-```groovy
-dependencies {
-    compile 'com.jagrosh:DiscordIPC:LATEST'
-}
-
-repositories {
-    jcenter()
-}
+```kts
+maven("https://maven.teamresourceful.com/repository/thatgravyboat/")
 ```
 
-# Example
+Then you can add the dependency:
 
-Quick example, assuming you already have a GUI application
+```kts
+compileOnly("com.jagrosh:DiscordIPC:${version}")
+```
+
+## Example
+
 ```java
 IPCClient client = new IPCClient(345229890980937739L);
 client.setListener(new IPCListener(){
@@ -70,13 +46,3 @@ client.setListener(new IPCListener(){
 });
 client.connect();
 ```
-
-### Other Examples
-* [Monster Hunter Gathering Hall App](https://github.com/MHGatheringHall/App) - App for displaying in-game info for a non-PC game series
-
-
-# Official Discord-RPC Bindings
-
-The official RPC bindings can be found here: https://github.com/discordapp/discord-rpc
-
-A Java wrapper for the official bindings is available here: https://github.com/MinnDevelopment/Java-DiscordRPC

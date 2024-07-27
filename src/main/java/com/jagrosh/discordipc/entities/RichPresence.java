@@ -30,6 +30,7 @@ import com.google.gson.JsonPrimitive;
  * @author John Grosh (john.a.grosh@gmail.com)
  */
 public class RichPresence {
+    private final ActivityType type;
     private final String state;
     private final String details;
     private final long startTimestamp;
@@ -47,10 +48,11 @@ public class RichPresence {
     private final RichPresenceButton[] buttons;
     private final boolean instance;
 
-    public RichPresence(String state, String details, long startTimestamp, long endTimestamp,
+    public RichPresence(ActivityType type, String state, String details, long startTimestamp, long endTimestamp,
                         String largeImageKey, String largeImageText, String smallImageKey, String smallImageText,
                         String partyId, int partySize, int partyMax, String matchSecret, String joinSecret,
                         String spectateSecret, RichPresenceButton[] buttons, boolean instance) {
+        this.type = type;
         this.state = state;
         this.details = details;
         this.startTimestamp = startTimestamp;
@@ -85,6 +87,8 @@ public class RichPresence {
                 secrets = new JsonObject(),
                 finalObject = new JsonObject();
         JsonArray buttonArray = new JsonArray();
+
+        finalObject.addProperty("type", type.getId());
 
         if (startTimestamp > 0) {
             timestamps.addProperty("start", startTimestamp);
@@ -179,6 +183,7 @@ public class RichPresence {
      * <a href="https://discordapp.com/developers/docs/rich-presence/how-to#updating-presence-update-presence-payload-fields">here</a>
      */
     public static class Builder {
+        private ActivityType type = ActivityType.PLAYING;
         private String state;
         private String details;
         private long startTimestamp;
@@ -202,10 +207,21 @@ public class RichPresence {
          * @return The RichPresence built.
          */
         public RichPresence build() {
-            return new RichPresence(state, details, startTimestamp, endTimestamp,
+            return new RichPresence(type, state, details, startTimestamp, endTimestamp,
                     largeImageKey, largeImageText, smallImageKey, smallImageText,
                     partyId, partySize, partyMax, matchSecret, joinSecret,
                     spectateSecret, buttons, instance);
+        }
+
+        /**
+         * Sets the type of activity the user is doing.
+         *
+         * @param type The type of activity the user is doing.
+         * @return This Builder.
+         */
+        public Builder setType(ActivityType type){
+            this.type = type;
+            return this;
         }
 
         /**
